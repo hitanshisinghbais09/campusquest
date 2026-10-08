@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { min-height: 100%; }
+
+body {
+  background: #0B0A1E;
+  color: #F3EEFF;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- glass card ---------- */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- buttons ---------- */
+.btn-gold {
+  background: linear-gradient(135deg, #F5C96A, #E8A93B);
+  color: #1a1033;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.btn-gold:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 201, 106, 0.35);
+}
+.btn-gold:disabled { cursor: not-allowed; }
+
+.btn-ghost {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #A79CC8;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.btn-ghost:hover { color: #F5C96A; border-color: rgba(245, 201, 106, 0.5); }
+
+/* ---------- form fields ---------- */
+.field {
+  width: 100%;
+  margin-top: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #F3EEFF;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field:focus {
+  border-color: #F5C96A;
+  box-shadow: 0 0 0 3px rgba(245, 201, 106, 0.15);
+}
+.field:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1b1540 inset;
+  -webkit-text-fill-color: #F3EEFF;
+}
+
+/* ---------- animated background ---------- */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.35;
+  animation: drift 25s ease-in-out infinite;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -40px) scale(1.12); }
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle 4s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.95; }
+}
+
+/* ---------- oracle + misc animation ---------- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.floaty { animation: floaty 4s ease-in-out infinite; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 24s linear infinite; }
+.spin-slow-rev { animation: spin-slow 36s linear infinite reverse; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.xp-bar {
+  background: linear-gradient(90deg, #8B5CF6, #F5C96A, #8B5CF6);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  box-shadow: 0 0 12px rgba(245, 201, 106, 0.5);
+}
+
+@keyframes orbglow {
+  0%, 100% { box-shadow: 0 0 30px 6px rgba(139, 92, 246, 0.45), inset 0 0 30px rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 0 55px 14px rgba(245, 201, 106, 0.35), inset 0 0 40px rgba(245, 201, 106, 0.25); }
+}
+.orb { animation: orbglow 4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob, .star, .floaty, .spin-slow, .spin-slow-rev, .xp-bar, .orb { animation: none; }
+}
